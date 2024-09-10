@@ -6,10 +6,14 @@ public abstract class Conta {
     protected int agencia;
     protected int numero;
     protected double saldo;
+    private Cliente cliente;
+    private char tipoConta;
 
-    public Conta() {
+    public Conta(Cliente cliente, char tipoConta) {
         this.agencia = AGENCIA_PADRAO;
         this.numero = SEQUENCIAL++;
+        this.cliente = cliente;
+        this.tipoConta = tipoConta;
     }
 
     public void sacar(double valor) {
@@ -26,7 +30,15 @@ public abstract class Conta {
     }
 
     public void imprimirExtrato() {
-        System.out.println(saldo);
+        System.out.println();
+        if (tipoConta == 'c') {
+            System.out.println("Extrato de Conta Corrente");
+        } else {
+            System.out.println("Extrato de Conta Poupança");
+        }
+        System.out.println("Agência: " + this.getAgencia());
+        System.out.println("Conta: " + this.getNumero());
+        System.out.println("Saldo: " + this.getSaldo());
     }
 
     public int getAgencia() {
